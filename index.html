@@ -12,14 +12,19 @@
 </head>
 <body>
 <script>
-  // ⚠️ COLE AQUI a URL /exec do seu Web App
+  // ⚠️ URL /exec do seu Web App (SEM ?page= no final)
   var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTtQdptwC2e9b9Q-krhKehE2dznXoBuBB8HYCyKf_Ho76v3iey7erX9FJjAbX8Mzt_/exec';
 
-  // Só permite essas páginas via shell (evita embutir Hub/Admin por link)
-  var PERMITIDAS = ['cofre', 'eventos'];
+  // Rotas liberadas (todas do doGet do Codigo.gs)
+  var PERMITIDAS = [
+    'hub', 'login', 'trocar-senha',
+    'creditos', 'cofre', 'cofre-operador',
+    'eventos', 'eventos-operador', 'admin'
+  ];
+
   var params = new URLSearchParams(location.search);
-  var page = params.get('page') || 'cofre';
-  if (PERMITIDAS.indexOf(page) === -1) page = 'cofre';
+  var page = params.get('page') || 'hub';   // ← default agora é hub
+  if (PERMITIDAS.indexOf(page) === -1) page = 'hub';
 
   var src = APPS_SCRIPT_URL + '?page=' + encodeURIComponent(page);
   document.write(
