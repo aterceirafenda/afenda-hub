@@ -864,7 +864,7 @@ function hub_abrirModulo(i) {
   if (/^https?:\/\//i.test(endpoint)) {
     window.open(endpoint, '_blank');
   } else {
-    window.open('__BASE_URL__?page=' + slug, '_blank');
+    window.top.location.href = window.AFENDA_API + '?page=trocar-senha';
   }
 }
 
@@ -913,7 +913,7 @@ function hub_abrirPerfil(){
 
   el.querySelector('#pf-trocar').onclick = function(){
     close();
-    window.top.location.href = '__BASE_URL__?page=trocar-senha';
+    window.top.location.href = window.AFENDA_API + '?page=trocar-senha';
   };
 
   el.querySelector('#pf-sair').onclick = function(){ close(); hub_confirmarSair(); };
