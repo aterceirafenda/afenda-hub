@@ -6,33 +6,28 @@
 <meta name="theme-color" content="#100E15">
 <title>A Fenda — Hub</title>
 <style>
-  html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#100E15}
-  iframe{position:fixed;top:0;left:0;width:100%;height:100%;border:none}
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #100E15;
+  }
+  iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 </style>
 </head>
 <body>
-<iframe id="frame"
-        allow="camera; microphone; clipboard-write"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-<script>
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTtQdptwC2e9b9Q-krhKehE2dznXoBuBB8HYCyKf_Ho76v3iey7erX9FJjAbX8Mzt_/exec';
-  var PERMITIDAS = ['hub','login','trocar-senha','creditos','cofre','cofre-operador','eventos','eventos-operador','admin'];
-  var PADRAO = 'hub';
-
-  function carregar(page, push){
-    if (PERMITIDAS.indexOf(page) === -1) page = PADRAO;
-    document.getElementById('frame').src = APPS_SCRIPT_URL + '?page=' + encodeURIComponent(page);
-    var url = new URL(location.href);
-    url.searchParams.set('page', page);
-    (push ? history.pushState : history.replaceState).call(history, {page: page}, '', url);
-  }
-
-  window.addEventListener('popstate', function(ev){
-    var p = (ev.state && ev.state.page) || new URLSearchParams(location.search).get('page') || PADRAO;
-    carregar(p, false);
-  });
-
-  carregar(new URLSearchParams(location.search).get('page') || PADRAO, false);
-</script>
+<iframe
+  src="https://script.google.com/macros/s/AKfycbwTtQdptwC2e9b9Q-krhKehE2dznXoBuBB8HYCyKf_Ho76v3iey7erX9FJjAbX8Mzt_/exec"
+  allow="camera; microphone; clipboard-write"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
 </body>
 </html>
